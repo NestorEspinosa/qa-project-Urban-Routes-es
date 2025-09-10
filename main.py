@@ -88,6 +88,7 @@ class TestUrbanRoutes:
         capabilities["goog:loggingPrefs"] = {'performance': 'ALL'}
         cls.driver = webdriver.Chrome(options=options)
         cls.urbanroutes = UrbanRoutesPage(cls.driver)
+        cls.routes_page = UrbanRoutesPage(cls.driver)
 
     #Test 1
 
@@ -107,72 +108,64 @@ class TestUrbanRoutes:
 
 
     def test_select_comfort(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.click_taxi()
-        routes_page.click_comfort()
+        self.routes_page.click_taxi()
+        self.routes_page.click_comfort()
 
-        assert routes_page.get_active_tariff() == "Comfort"
+        assert self.routes_page.get_active_tariff() == "Comfort"
 
     #Test 3
 
     def test_fill_number(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.click_number_button()
+        self.routes_page.click_number_button()
         number=data.phone_number
-        routes_page.fill_number(number)
-        routes_page.click_next_button()
+        self.routes_page.fill_number(number)
+        self.routes_page.click_next_button()
         code=retrieve_phone_code(self.driver)
-        routes_page.set_code(code)
-        routes_page.click_confirm_button()
-        assert routes_page.get_number_label()==number
+        self.routes_page.set_code(code)
+        self.routes_page.click_confirm_button()
+        assert self.routes_page.get_number_label()==number
 
     #Test 4
 
     def test_add_new_card(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.click_payment_button()
-        routes_page.click_add_card_button()
-        routes_page.set_card_number(data.card_number)
-        routes_page.click_cvv_number()
-        routes_page.set_cvv_number(data.card_code)
-        routes_page.click_add_card()
-        routes_page.click_close()
-        assert routes_page.get_card_added()=="Tarjeta"
+        self.routes_page.click_payment_button()
+        self.routes_page.click_add_card_button()
+        self.routes_page.set_card_number(data.card_number)
+        self.routes_page.click_cvv_number()
+        self.routes_page.set_cvv_number(data.card_code)
+        self.routes_page.click_add_card()
+        self.routes_page.click_close()
+        assert self.routes_page.get_card_added()=="Tarjeta"
 
     #Test 5
 
     def test_add_message(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.click_message()
+        self.routes_page.click_message()
         message=data.message_for_driver
-        routes_page.set_message(message)
-        assert routes_page.get_message() == message
+        self.routes_page.set_message(message)
+        assert self.routes_page.get_message() == message
 
     #Test 6
 
     def test_add_blanket(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.select_blanket()
-        assert routes_page.is_blanket_selected() == True
+        self.routes_page.select_blanket()
+        assert self.routes_page.is_blanket_selected() == True
 
     #Test 7
     def test_add_ice(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.add_ice()
-        routes_page.add_ice()
-        assert routes_page.ice_value() == "2"
+        self.routes_page.add_ice()
+        self.routes_page.add_ice()
+        assert self.routes_page.ice_value() == "2"
 
     #Test 8
     def test_order_taxi(self):
-        routes_page = UrbanRoutesPage(self.driver)
-        routes_page.order_taxi()
-        assert routes_page.is_order_window_visible() == True
+        self.routes_page.order_taxi()
+        assert self.routes_page.is_order_window_visible() == True
 
     #Test 9
     def test_get_driver(self):
-        routes_page = UrbanRoutesPage(self.driver)
 
-        assert routes_page.is_driver_info_visible() == True
+        assert self.routes_page.is_driver_info_visible() == True
 
 
     @classmethod

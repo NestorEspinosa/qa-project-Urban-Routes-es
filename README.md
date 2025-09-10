@@ -49,7 +49,7 @@ main.py::TestUrbanRoutes::test_add_ice PASSED [ 77%]
 main.py::TestUrbanRoutes::test_order_taxi PASSED [ 88%]
 main.py::TestUrbanRoutes::test_get_driver PASSED [100%]
 
-============================= 9 passed in 46.86s ==============================
+============================= 9 passed in 40.28s ==============================
 
 
 
