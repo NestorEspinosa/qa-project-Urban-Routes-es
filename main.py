@@ -2,11 +2,7 @@ import data
 import time
 from methods import UrbanRoutesPage
 from selenium import webdriver
-from selenium.webdriver import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 
 
 # no modificar
@@ -36,42 +32,6 @@ def retrieve_phone_code(driver) -> str:
                             "Utiliza 'retrieve_phone_code' solo después de haber solicitado el código en tu aplicación.")
         return code
 
-
-'''
-class UrbanRoutesPage:
-    from_field = (By.ID, 'from')
-    to_field = (By.ID, 'to')
-
-    def __init__(self, driver):
-        self.driver = driver
-
-    def set_from(self, from_address):
-        #self.driver.find_element(*self.from_field).send_keys(from_address)
-        field = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located(self.from_field)
-        )
-        field.send_keys(from_address)
-
-
-    def set_to(self, to_address):
-        #self.driver.find_element(*self.to_field).send_keys(to_address)
-        field = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located(self.to_field)
-        )
-        field.send_keys(to_address)
-
-
-    def get_from(self):
-        return self.driver.find_element(*self.from_field).get_property('value')
-
-    def get_to(self):
-        return self.driver.find_element(*self.to_field).get_property('value')
-
-    def set_route(self,from_address,to_address):
-        self.set_from(from_address)
-        self.set_to(to_address)
-'''
-
 class TestUrbanRoutes:
 
     driver = None
@@ -87,7 +47,6 @@ class TestUrbanRoutes:
         capabilities = DesiredCapabilities.CHROME
         capabilities["goog:loggingPrefs"] = {'performance': 'ALL'}
         cls.driver = webdriver.Chrome(options=options)
-        cls.urbanroutes = UrbanRoutesPage(cls.driver)
         cls.routes_page = UrbanRoutesPage(cls.driver)
 
     #Test 1
